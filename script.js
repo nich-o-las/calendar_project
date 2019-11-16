@@ -1,80 +1,37 @@
-var dayOfWeek = moment().day();
-var month = moment().month();;
 var dayOfMonth = moment().date();
+var dayBox = $('#dayBox')
 
 // set the day to a string
-switch (dayOfWeek) {
-    case 0:
-        dayOfWeek = "Sunday";
-        break;
-    case 1:
-        dayOfWeek = "Monday";
-        break;
-    case 2:
-        dayOfWeek = "Tuesday";
-        break;
-    case 3:
-        dayOfWeek = "Wednesday";
-        break;
-    case 4:
-        dayOfWeek = "Thursday";
-        break;
-    case 5:
-        dayOfWeek = "Friday";
-        break;
-    case 6:
-        dayOfWeek = "Saturday";
-}
-
+var days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+var dayOfWeek = days[moment().day()];
 //set the month to a string
-switch (month) {
-    case 0:
-        month = "January";
-        break;
-    case 1:
-        month = "February";
-        break;
-    case 2:
-        month = "March";
-        break;
-    case 3:
-        month = "April";
-        break;
-    case 4:
-        month = "May";
-        break;
-    case 5:
-        month = "June";
-        break;
-    case 6:
-        month = "July";
-        break;
-    case 7:
-        month = "August";
-        break;
-    case 8:
-        month = "September";
-        break;
-    case 9:
-        month = "October";
-        break;
-    case 10:
-        month = "November";
-        break;
-    case 11:
-        month = "December";
-        break;
-}
+var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+var month = months[moment().month()];
 var fullDate = `${dayOfWeek}, ${month} ${dayOfMonth}`;
+var currentHour = moment().hour();
 $('#currentDay').text(fullDate);
+for(var i = 9; i < 17; i++){
+    // get the current time
+    //create the ui elements
+    var row = $(`<div class="row" id="${i}">`);
+    var hour = $('<p class="hour">');
+    // set the time (not military)
+    var hourText = i % 12;
+    if(hourText === 0){hourText = 12};
+    hour.text(hourText);
+    var textArea = $('<textarea placeholder="enter your tasks">');
+    var saveBtn = $('<div class="saveBtn">').text("save");
+    row.append(hour,textArea,saveBtn)
+    if(currentHour < i){
+        row.addClass("future");
+    }
+    if(currentHour === i){
+        row.addClass("present");
+    }
+    if(currentHour > i){
+        row.addClass("past");
+    }
+    dayBox.append(row);
+}
 
-94
 
-$('.row').on('keypress', 'textarea', function (e) {
-        if(e.which === 13){
-            console.log($(this).id)
-        //localStorage.setItem($this.parent().id$(this).textContent
-        //Enable the textbox again if needed.
-        $(this).removeAttr("disabled");
-        }
-});
