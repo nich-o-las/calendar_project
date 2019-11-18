@@ -15,6 +15,10 @@ body {
     font-size: 16px;
     line-height: 1;
 }
+
+#dayBox{
+  margin-bottom: 1em;
+}
   
 textarea{
   height: 100%;
