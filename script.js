@@ -23,7 +23,7 @@ $(function () {
         // set the time (not military)
         var hourText = i % 12;
         if (hourText === 0) { hourText = 12 };
-        hour.text(hourText);
+        hour.text(hourText + ":00");
         hourBox.append(hour);
         var textArea = $(`<textarea class="text-area" id="textarea-${i}" placeholder="enter your tasks">`);
         var saveBtn = $('<div class="saveBtn" data-hour=' + i + '>').html('<i class="far fa-save"></i>');
