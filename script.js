@@ -17,20 +17,22 @@ $(function () {
     for (var i = 9; i < 17; i++) {
         //create the ui elements
         var row = $(`<div class="row" id="${i}">`);
-        var hour = $('<p class="hour">');
+        var hourBox = $('<div class="hour">');
+        var hour = $('<p>');
 
         // set the time (not military)
         var hourText = i % 12;
         if (hourText === 0) { hourText = 12 };
-        hour.text(hourText + ":00");
+        hour.text(hourText);
+        hourBox.append(hour);
         var textArea = $(`<textarea class="text-area" id="textarea-${i}" placeholder="enter your tasks">`);
-        var saveBtn = $('<div class="saveBtn" data-hour=' + i + '>').text("save");
+        var saveBtn = $('<div class="saveBtn" data-hour=' + i + '>').html('<i class="far fa-save"></i>');
         //check to see if you've saved values
         var savedVal = localStorage.getItem(i);
         if(savedVal){
             textArea.val(savedVal);
         }
-        row.append(hour, textArea, saveBtn)
+        row.append(hourBox, textArea, saveBtn)
         if (currentHour < i) {
             row.addClass("future");
         }
@@ -50,9 +52,7 @@ $(function () {
         localStorage.setItem(textKey, textToSet);
         location.reload();
     });
-
-    
-})
+});
 
 
 
