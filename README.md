@@ -8,3 +8,6 @@
 1. Be able to schedule my workday by the hour.
 2. I would like the schedule to clearly display the time and date.
 3. I would like the hour blocks to change based on whether they are in the past, future, or present.
+
+### Deployed App: https://nich-o-las.github.io/calendar_project/
+
